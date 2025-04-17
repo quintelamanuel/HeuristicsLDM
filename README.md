@@ -6,7 +6,6 @@ Prototype Tool based on Apollon.
 
 ```
 git clone https://github.com/quintelamanuel/HeuristicsLDM.git
-cd Apollon
 ```
 
 Install all node dependencies:
