@@ -1,17 +1,33 @@
-# Apollon
+# Heuristics LDM Generator Tool
 
-[![GitHub Actions Status](https://github.com/ls1intum/Apollon/workflows/Build/badge.svg)](https://github.com/ls1intum/Apollon/actions?query=branch%3Adevelop+workflow%3ABuild)
-[![Dependencies status](https://img.shields.io/david/ls1intum/Apollon)](package.json)
-[![DevDependencies status](https://img.shields.io/david/dev/ls1intum/Apollon)](package.json)
-[![Documentation Status](https://readthedocs.org/projects/apollon-library/badge/?version=latest)](https://apollon-library.readthedocs.io/en/latest/?badge=latest)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ff48bab36a924471abcf61566563ffe6)](https://app.codacy.com/gh/ls1intum/Apollon?utm_source=github.com&utm_medium=referral&utm_content=ls1intum/Apollon&utm_campaign=Badge_Grade_Dashboard)
-[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/9bbbff1e8475480d92c80615ac2eddf6)](https://www.codacy.com/gh/ls1intum/Apollon?utm_source=github.com&utm_medium=referral&utm_content=ls1intum/Apollon&utm_campaign=Badge_Coverage)
+Prototype Tool based on Apollon.
 
-[![Latest version)](https://img.shields.io/npm/v/@ls1intum/apollon)](https://www.npmjs.com/package/@ls1intum/apollon)
+## Development Setup
 
-A UML modeling editor written in React and TypeScript.
+```
+git clone https://github.com/quintelamanuel/HeuristicsLDM.git
+cd Apollon
+```
 
-## Main Features
+Install all node dependencies:
+
+```
+npm install
+```
+
+Launch the webpack-dev-server:
+
+```
+npm run start
+```
+
+The webpack-dev-server is now listening on [http://localhost:8888](http://localhost:8888). If you change a TypeScript file, webpack will automatically compile the code, bundle the application, and refresh the page in your browser.
+
+
+
+
+## Apollon Original Main Features
+A UML modeling editor written in React and TypeScript
 
 ### Easy to use editor
 The user interface of Apollon is simple to use. 
