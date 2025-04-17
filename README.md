@@ -2,6 +2,12 @@
 
 Prototype Tool based on Apollon.
 
+## Test the tool
+
+The tool is available online at. It is an experimental tool, not ready for production, and is provided as-is.
+
+https://quintelamanuel.github.io/test_heuristics/
+
 ## Development Setup
 
 ```
