@@ -107,6 +107,28 @@ export class ApollonEditor {
     };
   }
 
+  /**
+   * Exports a model as JSON
+   * @param model the apollon model to export as JSON
+   * @param options optional settings for the JSON export (e.g. formatting)
+   * @returns the model as a JSON string
+   */
+  static async exportModelAsJSON(
+    model: Apollon.UMLModel,
+    options?: { space?: string | number }
+  ): Promise<string> {
+    return JSON.stringify(model, null, options?.space);
+  }
+
+  /**
+   * Exports current model as JSON
+   * @param options optional settings for the JSON export (e.g. formatting)
+   * @returns the current model as a JSON string
+   */
+  exportAsJSON(options?: { space?: string | number }): Promise<string> {
+    return ApollonEditor.exportModelAsJSON(this.model, options);
+  }
+
   selection: Apollon.Selection = { elements: {}, relationships: {} };
   private root?: Root;
   private currentModelState?: ModelState;
@@ -400,6 +422,7 @@ export class ApollonEditor {
   exportAsSVG(options?: Apollon.ExportOptions): Promise<Apollon.SVG> {
     return ApollonEditor.exportModelAsSvg(this.model, options, this.options.theme);
   }
+
 
   /**
    * Returns current scale factor of the application

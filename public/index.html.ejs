@@ -2,7 +2,10 @@
 <html lang="en">
 
 <head>
-  <title>Apollon</title>
+  <title>Apollon - Local Domain Model Generator</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
@@ -13,80 +16,96 @@
     <a class="navbar-brand logo float-left">
       <img class="logo-img" src="images/logo.png" />
       <span>&nbsp;&nbsp;&nbsp;</span>
-      <span class="navbar-title">Apollon</span>&nbsp;&nbsp;&nbsp;<span class="navbar-version">
-        <%=htmlWebpackPlugin.options.version%>
+      <span class="navbar-title">Apollon - Local Domain Model Generator</span>&nbsp;&nbsp;&nbsp;<span
+        class="navbar-version">
+        v0.1</span>
       </span>
     </a>
   </header>
   <div class="container">
     <aside class="sidebar">
+
       <section>
-        <h3 class="header">Diagram Type</h3>
-        <div class="dropdown">
-          <select name="type" data-cy="select-type" onchange="apollon.onChange(event)">
-            <option value="ClassDiagram">Class Diagram</option>
-            <option value="ObjectDiagram">Object Diagram</option>
-            <option value="ActivityDiagram">Activity Diagram</option>
-            <option value="UseCaseDiagram">Use Case Diagram</option>
-            <option value="CommunicationDiagram">Communication Diagram</option>
-            <option value="ComponentDiagram">Component Diagram</option>
-            <option value="DeploymentDiagram">Deployment Diagram</option>
-            <option value="PetriNet">Petri Net</option>
-            <option value="ReachabilityGraph">Reachability Graph</option>
-            <option value="SyntaxTree">Syntax Tree</option>
-            <option value="Flowchart">Flowchart</option>
-            <option value="BPMN">BPMN (beta)</option>
-          </select>
+        <h3 class="header">Class Tags</h3>
+        <div class="button-container">
+          <button id="instantiableClassBtn" data-button-type="class-tag"
+            onclick="apollon.tagSelectedClassesAsInstantiable()" disabled>Instantiable</button>
+          <button id="modifiableClassBtn" data-button-type="class-tag"
+            onclick="apollon.tagSelectedClassesAsModifiable()" disabled>Modifiable</button>
         </div>
       </section>
+
       <section>
-        <h3 class="header">Language</h3>
-        <div class="dropdown">
-          <select name="locale" onchange="apollon.onChange(event)">
-            <option value="en">English</option>
-            <option value="de">German</option>
-          </select>
+        <h3 class="header">Relationship Tags</h3>
+        <div class="button-container">
+          <button id="tagModifiableBtn" onclick="apollon.toggleRelationshipModifiableOptions()" disabled>Tag as
+            modifiable</button>
+          <div class="option-buttons">
+            <button id="modifiableOptionBtn1" onclick="apollon.selectRelationshipModifiableOption(1)" disabled></button>
+            <button id="modifiableOptionBtn2" onclick="apollon.selectRelationshipModifiableOption(2)" disabled></button>
+          </div>
         </div>
       </section>
+
       <section>
-        <h3 class="header">Mode</h3>
-        <div class="dropdown">
-          <select name="mode" onchange="apollon.onChange(event)">
-            <option value="Exporting">Exporting</option>
-            <option value="Modelling">Modelling</option>
-            <option value="Assessment">Assessment</option>
-          </select>
+        <h3 class="header">Create Query shapes</h3>
+        <div class="button-container">
+          <button id="selectQueryRootBtn" onclick="apollon.selectQueryRoot()">Select Query Root</button>
         </div>
-        <label>
-          <input class="checkbox" type="checkbox" name="readonly" onchange="apollon.onSwitch(event)" />
-          read-only
-        </label>
-      </section>
-      <section>
-        <h3 class="header">Export</h3>
-        <div class="switch">
-          <button onclick="apollon.draw()">All</button>
-          <button onclick="apollon.draw('include')">Include</button>
-          <button onclick="apollon.draw('exclude')">Exclude</button>
+        <!--<div class="button-container">
+          <button id="addToPathBtn" onclick="apollon.addToQueryPath()">Add to Path</button>
+        </div>-->
+        <div class="button-container">
+          <button id="finishPathBtn" onclick="apollon.finishQueryPath()">Finish Path</button>
         </div>
       </section>
+
       <section>
-        <h3 class="header">State</h3>
-        <div class="switch">
-          <button onclick="apollon.save(event)">Save</button>
+        <h3 class="header">View Query shapes</h3>
+        <div class="button-container">
+          <button id="showQueryShapeBtn" onclick="apollon.showQueryShape()" disabled>Show Query Shape</button>
+        </div>
+        <div class="button-container">
+          <button id="stopShowingQueryShapeBtn" onclick="apollon.stopShowingQueryShape()" disabled>Stop showing</button>
+        </div>
+      </section>
+
+      <section>
+        <h3 class="header">Copy to LDM</h3>
+        <div class="button-container">
+          <button onclick="apollon.copySelectedElementsToLDM(event)">Copy to LDM</button>
+        </div>
+      </section>
+
+      <section>
+        <h3 class="header">Models</h3>
+        <div class="button-container">
           <button onclick="apollon.clear(event)">Clear</button>
+          <button onclick="apollon.downloadGDM(event)">Download GDM</button>
+          <button onclick="apollon.downloadLDM(event)">Download LDM</button>
+          <button onclick="apollon.loadGDM(event)">Load GDM</button>
         </div>
       </section>
+
       <section>
-        <h3 class="header">Theming</h3>
-        <div class="switch">
-          <button id="theming-light-mode-button" onclick="apollon.setTheming('light')" class="selected">Light</button>
-          <button id="theming-dark-mode-button" onclick="apollon.setTheming('dark')">Dark</button>
+        <h3 class="header">Models</h3>
+        <div class="button-container">
+          <button id="experimentBtn" onclick="apollon.toggleExperiment(event)">Start Experiment</button>
         </div>
       </section>
+
     </aside>
     <div class="apollon-container">
-      <main id="apollon"></main>
+      <div class="editors-container">
+        <div class="editor-section">
+          <h3 class="editor-title">Global Domain Model</h3>
+          <main id="apollon_gdm" class="editor-canvas"></main>
+        </div>
+        <div class="editor-section">
+          <h3 class="editor-title">Local Domain Model</h3>
+          <main id="apollon_ldm" class="editor-canvas"></main>
+        </div>
+      </div>
     </div>
   </div>
 </body>

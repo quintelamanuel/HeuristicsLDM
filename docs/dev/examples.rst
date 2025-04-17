@@ -9,7 +9,7 @@ Example of Feature Definition of Element
 The available functionality of the abstract UMLClassifier class
 which is the super method of all class like elements:
 
-.. code-block:: typescript
+.. code-block:: text
 
     export abstract class UMLClassifier extends UMLContainer implements IUMLClassifier {
       static features: UMLElementFeatures = {
@@ -36,7 +36,7 @@ Example of Visual Representation Implementation of Element
 
 The representation is the defined in the corresponding component class, in our example `UMLClassifierComponent`.
 
-.. code-block:: typescript
+.. code-block:: text
 
     export const UMLClassifierComponent: FunctionComponent<Props> = ({ element, children }) => {
       const fontStyle = element.italic ? 'italic' : undefined;
@@ -101,7 +101,7 @@ A HOC wraps a react component and adds extra functionality to the component. For
 the hoverable HOC (`src/main/components/uml-element/hoverable/hoverable.tsx`) which implement
 MouseEventListeners to enable hovering when a user is actually hovering over an element with his mouse.
 
-.. code-block:: typescript
+.. code-block:: text
 
     export const hoverable = (
       WrappedComponent: ComponentType<UMLElementComponentProps>,
@@ -146,7 +146,7 @@ and leave() method.
 Connecting a Component to the Global Application State
 ------------------------------------------------------
 
-.. code-block:: typescript
+.. code-block:: text
 
     const enhance = connect<StateProps, DispatchProps, OwnProps, ModelState>(
       (state, props) => {
